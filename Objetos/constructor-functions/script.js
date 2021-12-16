@@ -31,18 +31,13 @@ const Bruna = new Pessoa("Bruna", 15);
 
 function Dom(seletor) {
   //constructor fucntion com parametro do seletor que vamos pegar ao criar um novo objeto
-  const elementList = document.querySelectorAll(seletor); //armazenando o seletor na constante elementList
+  const elementList = document.querySelector(seletor); //armazenando o seletor na constante elementList
   this.elements = elementList;
-  console.log(this.elements);
   this.addClass = function (classe) {
-    elementList.forEach((element) => {
-      element.classList.add(classe);
-    });
+    elementList.forEach((element) => element.classList.add(classe));
   };
   this.removeClass = function (classe) {
-    elementList.forEach((element) => {
-      element.classList.remove(classe);
-    });
+    elementList.forEach((element) => element.classList.remove(classe));
   };
 }
 
