@@ -1,42 +1,34 @@
-const perimetro = new Function("lado", "return lado * 4");
+// Retorne a soma total de caracteres dos
+// parágrafos acima utilizando reduce
 
-function darOi(nome, idade) {
-  console.log("Oi para você " + nome + idade);
+const paragrafos = document.querySelectorAll("p");
+
+const totalCaracteres = Array.prototype.reduce.call(
+  paragrafos,
+  (acumulador, item) => {
+    return acumulador + item.innerText.length;
+  },
+  0
+);
+console.log(totalCaracteres);
+console.log(paragrafos);
+
+// Crie uma função que retorne novos elementos
+// html, com os seguintes parâmetros
+// tag, classe e conteudo.
+
+function criarElemento(tag, classe, conteudo) {
+  const elemento = document.createElement(tag);
+  classe ? elemento.classList.add(classe) : null;
+  conteudo ? (elemento.innerHTML = conteudo) : null;
+  return elemento;
 }
 
-darOi.call({}, "Matheus", 22);
+console.log(criarElemento("li", "azul", "Esse é o conteúdo"));
 
-window.marca = "Carro";
-window.ano = 288;
+// Crie uma nova função utilizando a anterior como base
+// essa nova função deverá sempre criar h1 com a
+// classe titulo. Porém o parâmetro conteudo continuará dinâmico
 
-function descricaoCarro(velocidade) {
-  console.log(this);
-  console.log(this.marca + " " + this.ano + velocidade);
-}
-
-descricaoCarro.call({ marca: "Honda", ano: 2015 }, 100);
-
-const carros = ["Ford", "Fiat", "VW"];
-carros.forEach.call(carros, (item) => {
-  console.log(item);
-});
-
-function Dom(seletor) {
-  this.element = document.querySelector(seletor);
-}
-
-Dom.prototype.ativo = function (classe) {
-  // this.element.classList.add(classe);
-};
-
-//const ul = new Dom("ul");
-
-const li = {
-  element: document.querySelector("li"),
-};
-
-Dom.prototype.ativo.call(li, "ativar");
-
-//ul.ativo.call(li, "ativar");
-
-//console.log(ul.element);
+const h1Titulo = criarElemento.bind(null, "h1", "titulo");
+console.log(h1Titulo("Cursos de JS"));
