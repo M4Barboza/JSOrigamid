@@ -1,7 +1,12 @@
-const doc = fetch('./doc.txt');
+const sobre = fetch('./sobre.html');
+const div = document.createElement('div');
 
-doc.then(resolucao => {
-    console.log(resolucao)
-})
 
-//minuto -12:36
+sobre.then(r => r.text())
+    .then((body) => {
+        div.innerHTML = body;
+        const titulo = div.querySelector('h1');
+        document.querySelector('h1').innerText = titulo.innerText;
+        console.log(titulo)
+    })
+
